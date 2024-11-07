@@ -1,0 +1,54 @@
+---
+- name: install services
+  hosts: localhost
+  tasks:
+  - name: install dependencies
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - nfs-utils
+      - tftp-server
+      - dhcp-server
+  - name: install warewulf
+    yum:
+      name: https://github.com/warewulf/warewulf/releases/download/v4.5.7/warewulf-4.5.7-1.el8.x86_64.rpm
+      state: present
+      disable_gpg_check: true
+
+  - name: configure warewulf.conf
+    template:
+      src: ./warewulf.j2
+      dest: /etc/warewulf/warewulf.conf
+ 
+  - name: apply warewulf config
+    shell: 'wwctl configure --all'
+
+  - name: start and enable warewulf
+    service:
+      name: warewulfd.service
+      state: restarted
+      enabled: true
+
+  - name: add base node image container
+    ignore_errors: true
+    shell: "{{ item }}"
+    loop:
+      - wwctl container import docker://ghcr.io/warewulf/warewulf-rockylinux:9 rockylinux-9 --build
+      - wwctl profile set default --container rockylinux-9
+      - wwctl profile set -y default --netmask=255.255.255.0 --gateway=10.2.22.1
+      - wwctl node add node1 --ipaddr=10.2.22.11 --discoverable=true
+      - wwctl node add node2 --ipaddr=10.2.22.12 --discoverable=true
+      - wwctl node add node3 --ipaddr=10.2.22.13 --discoverable=true
+      - wwctl node list -a
+
+  - name: restart services
+    service:
+      name: "{{ item }}"
+      state: restarted
+      enabled: true
+      loop:
+        - warewulfd
+        - dhcpd
+        - tftp
+        - nfs-server
