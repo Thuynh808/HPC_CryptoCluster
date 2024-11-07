@@ -1,0 +1,10 @@
+---
+collections:
+  - name: community.general
+    version: 9.5.1
+  - name: community.crypto
+    version: 2.22.3
+  - name: community.network
+    version: 5.1.0
+  - name: ansible.posix
+    version: 1.6.2
