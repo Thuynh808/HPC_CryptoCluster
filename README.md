@@ -9,7 +9,12 @@
 - **Clone the repository**
   
   ```bash
-  git clone https://github.com/Thuynh808/HPC_CryptoCluster
+  git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
   cd HPC_CryptoCluster
   ansible-galaxy collection install -r requirements.yaml -vv
+  ```
+- **Run install playbook**
+
+  ```bash
+  ansible-playbook install.yaml -vv
   ```

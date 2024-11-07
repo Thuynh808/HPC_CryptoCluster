@@ -31,7 +31,6 @@
       enabled: true
 
   - name: add base node image container
-    ignore_errors: true
     shell: "{{ item }}"
     loop:
       - wwctl container import docker://ghcr.io/warewulf/warewulf-rockylinux:9 rockylinux-9 --build
@@ -47,8 +46,8 @@
       name: "{{ item }}"
       state: restarted
       enabled: true
-      loop:
-        - warewulfd
-        - dhcpd
-        - tftp
-        - nfs-server
+    loop:
+      - warewulfd
+      - dhcpd
+      - tftp
+      - nfs-server
