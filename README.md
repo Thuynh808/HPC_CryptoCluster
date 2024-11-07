@@ -9,6 +9,7 @@
 - **Clone the repository**
   
   ```bash
-  git clone https://github.com/Thuynh808/elastic_labs
-  cd elastic_labs
+  git clone https://github.com/Thuynh808/HPC_CryptoCluster
+  cd HPC_CryptoCluster
+  ansible-galaxy collection install -r requirements.yaml -vv
   ```
