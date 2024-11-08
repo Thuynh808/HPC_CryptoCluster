@@ -22,7 +22,4 @@
 
   ```bash
   wwctl container shell rockylinux-9
-  passwd
-  mypassword
-  mypassword
   ```
