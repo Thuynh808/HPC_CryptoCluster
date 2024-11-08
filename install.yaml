@@ -15,6 +15,7 @@
       name: https://github.com/warewulf/warewulf/releases/download/v4.5.7/warewulf-4.5.7-1.el8.x86_64.rpm
       state: present
       disable_gpg_check: true
+    when: ansible_hostname == 'skip'
 
   - name: configure warewulf.conf
     template:
@@ -39,9 +40,9 @@
       - wwctl node add node1 --ipaddr=10.2.22.11 --discoverable=true
       - wwctl node add node2 --ipaddr=10.2.22.12 --discoverable=true
       - wwctl node add node3 --ipaddr=10.2.22.13 --discoverable=true
-      - wwctl node set node1 -C rockylinux-9
-      - wwctl node set node2 -C rockylinux-9
-      - wwctl node set node3 -C rockylinux-9
+      - wwctl node set node1 -C rockylinux-9 -y
+      - wwctl node set node2 -C rockylinux-9 -y
+      - wwctl node set node3 -C rockylinux-9 -y
       - wwctl overlay build -NH
 
   - name: open firewall ports for services
