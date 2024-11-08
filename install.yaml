@@ -33,21 +33,42 @@
   - name: add base node image container
     shell: "{{ item }}"
     loop:
-      - wwctl container import docker://ghcr.io/warewulf/warewulf-rockylinux:9 rockylinux-9 --build
+      - wwctl container import docker://ghcr.io/warewulf/warewulf-rockylinux:9 rockylinux-9 --build --update
       - wwctl profile set default --container rockylinux-9
       - wwctl profile set -y default --netmask=255.255.255.0 --gateway=10.2.22.1
       - wwctl node add node1 --ipaddr=10.2.22.11 --discoverable=true
       - wwctl node add node2 --ipaddr=10.2.22.12 --discoverable=true
       - wwctl node add node3 --ipaddr=10.2.22.13 --discoverable=true
-      - wwctl node list -a
+      - wwctl node set node1 -C rockylinux-9
+      - wwctl node set node2 -C rockylinux-9
+      - wwctl node set node3 -C rockylinux-9
 
+  - name: open firewall ports for services
+    firewalld:
+      service: "{{ item }}"
+      permanent: true
+      state: enabled
+    loop:
+      - tftp
+      - dhcp
+      - rpc-bind
+      - mountd
+      - nfs
+  - name: open firewall port warewulf
+    firewalld:
+      port: 9873/tcp
+      permanent: true
+      state: enabled
+  
   - name: restart services
     service:
       name: "{{ item }}"
       state: restarted
       enabled: true
     loop:
+      - firewalld
       - warewulfd
       - dhcpd
       - tftp
       - nfs-server
+
