@@ -45,6 +45,11 @@
       - wwctl node set node3 -C rockylinux-9 -y
       - wwctl overlay build -NH
 
+  - name: generate root password
+    debug:
+      msg: "{{ 'password' | password_hash('sha512') }}"
+    register: pw
+  
   - name: open firewall ports for services
     firewalld:
       service: "{{ item }}"
