@@ -18,3 +18,11 @@
   ```bash
   ansible-playbook install.yaml -vv
   ```
+- **Set root password for container**
+
+  ```bash
+  wwctl container shell rockylinux-9
+  passwd
+  mypassword
+  mypassword
+  ```
