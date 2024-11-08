@@ -42,6 +42,7 @@
       - wwctl node set node1 -C rockylinux-9
       - wwctl node set node2 -C rockylinux-9
       - wwctl node set node3 -C rockylinux-9
+      - wwctl overlay build -NH
 
   - name: open firewall ports for services
     firewalld:
