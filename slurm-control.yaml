@@ -36,9 +36,7 @@
   - name: restart services
     service:
       name: "{{ item }}"
-      state: stopped
+      state: restarted
       enabled: true
     loop:
       - munge
-      - slurm
-      - slurmctl
