@@ -31,9 +31,11 @@
   ```bash
   dnf install -y git ansible-core
   ```
-- **Clone repo and run john.yaml**
+- **Clone repo and run playbooks to configure container image**
 
   ```bash
   git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
   ansible-playbook john.yaml -vv
+  ansible-playbook slurm-node.yaml -vv
+  exit #rebuild container image
   ```
