@@ -23,3 +23,17 @@
   ```bash
   wwctl container shell rockylinux-9
   ```
+  ```bash
+  passwd #set password
+  ```
+- **Install `git` and `ansible-core`**
+
+  ```bash
+  dnf install -y git ansible-core
+  ```
+- **Clone repo and run john.yaml**
+
+  ```bash
+  git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
+  ansible-playbook john.yaml -vv
+  ```
