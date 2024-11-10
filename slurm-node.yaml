@@ -19,11 +19,5 @@
     yum:
       name: slurm-slurmd
       state: present
-  - name: restart services
-    service:
-      name: "{{ item }}"
-      state: restarted
-      enabled: true
-    loop:
-      - munge
-      
+  - name: enable munge
+    shell: 'systemctl enable munge'
