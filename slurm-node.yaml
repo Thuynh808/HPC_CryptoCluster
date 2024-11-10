@@ -22,7 +22,7 @@
   - name: restart services
     service:
       name: "{{ item }}"
-      state: restarted
+      state: stopped
       enabled: true
     loop:
       - munge
