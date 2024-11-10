@@ -27,4 +27,3 @@
     lineinfile:
       path: '/root/.bashrc'
       line: 'alias john=/opt/john/run/john'
-
