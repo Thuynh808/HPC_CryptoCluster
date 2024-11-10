@@ -1,0 +1,30 @@
+---
+- name: setup slurm
+  hosts: localhost
+  tasks:
+  - name: create slurm user
+    user:
+      name: slurm
+      system: true
+  - name: install slurm packages
+    yum:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - munge
+      - munge-libs
+      - slurm
+      - slurm-perlapi
+  - name: install slurmd
+    yum:
+      name: slurm-slurmd
+      state: present
+  - name: restart services
+    service:
+      name: "{{ item }}"
+      state: restarted
+      enabled: true
+    loop:
+      - munge
+      - slurmd
+      

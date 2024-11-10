@@ -1,0 +1,43 @@
+---
+- name: setup slurm
+  hosts: localhost
+  tasks:
+  - name: create slurm user
+    user:
+      name: slurm
+      system: true
+  - name: install slurm packages
+    yum:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - munge
+      - munge-libs
+      - slurm
+      - slurm-perlapi
+  - name: install slurmctld
+    yum:
+      name: slurm-slurmctld
+      state: present
+  - name: generate munge key
+    shell: "{{ item }}"
+    loop:
+      - 'dd if=/dev/urandom bs=1 count=1024 > /etc/munge/munge.key'
+  - name: chown munge.key
+    file:
+      path: /etc/munge/munge.key
+      mode: '0400'
+      owner: munge 
+  - name: configure overlay for munge.key
+    shell: "{{ item }}"
+    loop:
+      - 'wwctl overlay import -p generic /etc/munge/munge.key'
+      - 'wwctl overlay build -O generic node1 node2 node3'
+  - name: restart services
+    service:
+      name: "{{ item }}"
+      state: restarted
+      enabled: true
+    loop:
+      - munge
+      - slurmctl
