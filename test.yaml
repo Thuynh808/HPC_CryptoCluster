@@ -1,45 +1,19 @@
 ---
-
-- name: test
+- name: setup john the ripper
   hosts: localhost
   tasks:
-  - name: generate root password
-    debug:
-      msg: "{{ 'password' | password_hash('sha512') }}"
-    register: pw
-  - name: pw_result
-    debug:
-      var: pw.msg
-
-  - name: create password for nodes
-    shell: "{{ item }}"
+  - name: install build dependencies
+    yum:
+      name: "{{ item }}"
+      state: present
     loop:
-      - 'wwctl overlay create root-config'
-  - name: create etc directory
-    file:
-      path: /var/lib/warewulf/overlays/root-config/etc
-      state: directory
-      
-  - name: update /etc/shadow 
-    copy:
-      content: "root:{{ pw.msg }}:19955:0:99999:7:::"
-      dest: /var/lib/warewulf/overlays/root-config/etc/shadow
-  - name: update /etc/passwd 
-    copy:
-      content: "root:x:0:0:root:/root:/bin/bash"
-      dest: /var/lib/warewulf/overlays/root-config/etc/passwd
+      - git
+      - make
+      - gcc
+      - openssl-devel
+  - name:
+    git:
+      repo: 'https://github.com/openwall/john.git'
+      dest: /opt/john
+      clone: true
 
-  - name: build overlay
-    shell: "{{ item }}"
-    loop:
-      - wwctl overlay build -O root-config
-      - wwctl node set node1 -O root-config
-      - wwctl node set node2 -O root-config
-      - wwctl node set node3 -O root-config
-
-  - name: Powercycle nodes to apply new overlay
-    shell: "wwctl node powercycle {{ item }}"
-    loop:
-      - node1
-      - node2
-      - node3
