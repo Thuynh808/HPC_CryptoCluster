@@ -1,6 +1,7 @@
 ---
 - name: Example with single pool
   hosts: localhost
+  ignore_errors: true
   vars:
     timesync_ntp_servers:
       - hostname: 2.pool.ntp.org

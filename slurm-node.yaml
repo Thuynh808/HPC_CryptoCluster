@@ -23,6 +23,7 @@
       name: slurm-slurmd
       state: present
   - name: create slurm group
+    group:
       name: slurm
       state: present
       gid: 985
