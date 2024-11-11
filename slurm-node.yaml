@@ -13,6 +13,7 @@
   - name: create slurm user
     user:
       name: slurm
+      uid: 986
       system: true
       group: slurm
   - name: install slurm packages
