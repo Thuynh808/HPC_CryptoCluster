@@ -5,10 +5,16 @@
 - name: setup slurm
   hosts: localhost
   tasks:
+  - name: create slurm group
+    group:
+      name: slurm
+      state: present
+      gid: 985
   - name: create slurm user
     user:
       name: slurm
       system: true
+      group: slurm
   - name: install slurm packages
     yum:
       name: "{{ item }}"
@@ -22,11 +28,6 @@
     yum:
       name: slurm-slurmd
       state: present
-  - name: create slurm group
-    group:
-      name: slurm
-      state: present
-      gid: 985
 
   - name: enable munge
     shell: 'systemctl enable munge'
