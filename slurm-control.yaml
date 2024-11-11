@@ -1,4 +1,7 @@
 ---
+- name: run timesync playbook
+  import_playbook: ./timesync.yaml
+
 - name: setup slurm
   hosts: localhost
   tasks:
@@ -19,19 +22,25 @@
     yum:
       name: slurm-slurmctld
       state: present
-  - name: generate munge key
+  - name: generate munge key and syncuser 
     shell: "{{ item }}"
     loop:
       - 'dd if=/dev/urandom bs=1 count=1024 > /etc/munge/munge.key'
+      - 'wwctl container syncuser --write rockylinux-9 --build'
   - name: chown munge.key
     file:
       path: /etc/munge/munge.key
       mode: '0400'
-      owner: munge 
+      owner: munge
+      group: slurm
   - name: configure overlay for munge.key
     shell: "{{ item }}"
     loop:
-      - 'wwctl overlay import -p generic /etc/munge/munge.key'
+      - 'wwctl overlay import -p --noupdate generic /etc/munge/munge.key'
+      - 'wwctl overlay chown generic /etc/munge/munge.key 987' 
+      - 'wwctl overlay import -p --noupdate generic /var/log/munge/munged.log'
+      - 'wwctl overlay chown generic /var/log/munge/munged.log 987' 
+    #  - 'wwctl overlay chown generic /var/lib/munge 987' 
       - 'wwctl overlay build -O generic node1 node2 node3'
   - name: restart services
     service:

@@ -1,4 +1,7 @@
 ---
+- name: run timesync playbook
+  import_playbook: ./timesync.yaml
+
 - name: setup slurm
   hosts: localhost
   tasks:
@@ -19,5 +22,10 @@
     yum:
       name: slurm-slurmd
       state: present
+  - name: create slurm group
+      name: slurm
+      state: present
+      gid: 985
+
   - name: enable munge
     shell: 'systemctl enable munge'
