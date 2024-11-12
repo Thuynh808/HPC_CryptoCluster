@@ -16,7 +16,7 @@
 - **Run install playbook**
 
   ```bash
-  ansible-playbook install.yaml -vv
+  ansible-playbook warewulf.yaml -vv
   ```
 - **Set root password for container**
 
