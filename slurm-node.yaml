@@ -25,18 +25,10 @@
     yum:
       name: slurm-slurmd
       state: present
-
   - name: enable munge
     shell: 'systemctl enable munge'
 
-  
-  - name: port
-    firewalld:
-      port: 6818/tcp
-      state: enabled
-      immediate: true
-      permanent: true    
-  - name: copy slurm config file
+  - name: slurm
     template:
       src: slurm.j2
       dest: /etc/slurm/slurm.conf
