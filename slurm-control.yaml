@@ -56,3 +56,22 @@
       enabled: true
     loop:
       - munge
+
+  - name: port
+    firewalld:
+      port: 6817/tcp
+      state: enabled
+      immediate: true
+      permanent: true    
+  - name: copy slurm config file
+    template:
+      src: slurm.j2
+      dest: /etc/slurm/slurm.conf
+  - name: restart
+    service: 
+      name: "{{ item }}"
+      state: restarted
+      enabled: true
+    loop:
+      - firewalld
+      - slurmctld

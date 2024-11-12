@@ -1,0 +1,49 @@
+# /etc/slurm/slurm.conf for HPC_CryptoCluster
+# Project: HPC_CryptoCluster
+# Primary Slurm Control Host
+ClusterName=HPC_CryptoCluster
+SlurmctldHost=control.streetrack.org(10.2.22.10)
+
+# Authentication and Security Settings
+AuthType=auth/munge
+Prolog=/usr/local/slurm/prolog
+Epilog=/usr/local/slurm/epilog
+
+# Job and Scheduling Settings
+FirstJobId=65536
+InactiveLimit=120
+JobCompType=jobcomp/filetxt
+JobCompLoc=/var/log/slurm/jobcomp
+KillWait=30
+MaxJobCount=10000
+MinJobAge=3600
+SchedulerType=sched/backfill
+
+# Logging and Directory Settings
+SlurmctldLogFile=/var/log/slurm/slurmctld.log
+SlurmdLogFile=/var/log/slurm/slurmd.log
+StateSaveLocation=/var/spool/slurm.state
+SlurmdSpoolDir=/var/spool/slurmd.spool
+TmpFS=/tmp
+SwitchType=switch/none
+ReturnToService=0
+WaitTime=30
+
+# Ports for Control and Compute Nodes
+SlurmctldPort=6817
+SlurmdPort=6818
+
+#
+# Node Configurations
+#
+NodeName=DEFAULT CPUs=2 RealMemory=2000 TmpDisk=64000
+NodeName=control NodeAddr=10.2.22.10 State=UNKNOWN
+NodeName=node[1-3] NodeAddr=10.2.22.[11-13] State=UNKNOWN Weight=16
+
+#
+# Partition Configurations
+#
+PartitionName=DEFAULT MaxTime=30 MaxNodes=10 State=UP
+PartitionName=crypto_cluster Nodes=node[1-3] Default=YES
+PartitionName=batch Nodes=node[1-3] MinNodes=2 MaxTime=120
+

@@ -28,3 +28,17 @@
 
   - name: enable munge
     shell: 'systemctl enable munge'
+
+  
+  - name: port
+    firewalld:
+      port: 6818/tcp
+      state: enabled
+      immediate: true
+      permanent: true    
+  - name: copy slurm config file
+    template:
+      src: slurm.j2
+      dest: /etc/slurm/slurm.conf
+  - name: enable slurmd
+    shell: 'systemctl enable slurmd'
