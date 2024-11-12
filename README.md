@@ -42,7 +42,6 @@
   exit #rebuild container image
   ```
 - **run slurm/munge setup playbook**
-
   ```bash
   ansible-playbook slurm-control.yaml -vv
   ```
