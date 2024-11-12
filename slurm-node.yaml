@@ -11,7 +11,7 @@
       uid: 800
       create_home: false
       system: true
-  - name: install slurm packages
+  - name: install packages
     yum:
       name: "{{ item }}"
       state: present
@@ -21,6 +21,8 @@
       - munge-libs
       - slurm
       - slurm-perlapi
+      - ignition
+      - gdisk
   - name: install slurmd
     yum:
       name: slurm-slurmd
