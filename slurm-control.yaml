@@ -16,6 +16,7 @@
       name: "{{ item }}"
       state: present
     loop:
+      - epel-release
       - munge
       - munge-libs
       - slurm
