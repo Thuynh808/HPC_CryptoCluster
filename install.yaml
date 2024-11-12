@@ -15,7 +15,7 @@
       name: https://github.com/warewulf/warewulf/releases/download/v4.5.7/warewulf-4.5.7-1.el8.x86_64.rpm
       state: present
       disable_gpg_check: true
-    when: ansible_hostname == 'skip'
+#    when: ansible_hostname == 'skip'
 
   - name: configure warewulf.conf
     template:
