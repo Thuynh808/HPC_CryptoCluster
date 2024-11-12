@@ -5,17 +5,12 @@
 - name: setup slurm
   hosts: localhost
   tasks:
-  - name: create slurm group
-    group:
-      name: slurm
-      state: present
-      gid: 985
   - name: create slurm user
     user:
       name: slurm
-      uid: 986
+      uid: 800
+      create_home: false
       system: true
-      group: slurm
   - name: install slurm packages
     yum:
       name: "{{ item }}"

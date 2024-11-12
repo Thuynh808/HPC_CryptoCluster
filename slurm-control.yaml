@@ -8,6 +8,8 @@
   - name: create slurm user
     user:
       name: slurm
+      uid: 800
+      create_home: false
       system: true
   - name: install slurm packages
     yum:
@@ -22,26 +24,37 @@
     yum:
       name: slurm-slurmctld
       state: present
+  - name: set ownership for munge files
+    file:
+      path: "{{ item }}"
+      owner: munge
+      group: munge
+    loop:
+      - '/var/log/munge/munged.log'
   - name: generate munge key and syncuser 
     shell: "{{ item }}"
     loop:
       - 'dd if=/dev/urandom bs=1 count=1024 > /etc/munge/munge.key'
       - 'wwctl container syncuser --write rockylinux-9 --build'
+  - name: chmod /etc/munge
+    file:
+      path: /etc/munge
+      state: directory
+      mode: '0755'
   - name: chown munge.key
     file:
       path: /etc/munge/munge.key
       mode: '0400'
       owner: munge
-      group: slurm
+      group: munge
   - name: configure overlay for munge.key
     shell: "{{ item }}"
     loop:
-      - 'wwctl overlay import -p --noupdate generic /etc/munge/munge.key'
-      - 'wwctl overlay chown generic /etc/munge/munge.key 987' 
-      - 'wwctl overlay import -p --noupdate generic /var/log/munge/munged.log'
-      - 'wwctl overlay chown generic /var/log/munge/munged.log 987' 
-    #  - 'wwctl overlay chown generic /var/lib/munge 987' 
-      - 'wwctl overlay build -O generic node1 node2 node3'
+      - 'wwctl overlay create slurm'
+      - 'wwctl overlay import -p slurm /etc/munge/munge.key'
+      - 'wwctl overlay chmod slurm /etc/munge 0755'
+      - 'wwctl profile set default --runtime=generic,slurm'
+      - 'wwctl overlay build -NH'
   - name: restart services
     service:
       name: "{{ item }}"
