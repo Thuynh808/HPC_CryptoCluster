@@ -18,9 +18,7 @@
     loop:
       - epel-release
       - munge
-      - munge-libs
       - slurm
-      - slurm-perlapi
       - ignition
       - gdisk
   - name: install slurmd
