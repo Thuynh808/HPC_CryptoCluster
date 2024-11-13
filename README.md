@@ -18,17 +18,10 @@
   ```bash
   ansible-playbook warewulf.yaml -vv
   ```
-- **Set root password for container**
+- **Configure container image**
 
   ```bash
   wwctl container shell rockylinux-9
-  ```
-  ```bash
-  passwd #set password
-  ```
-- **Clone repo and run playbooks to configure container image**
-
-  ```bash
   dnf install -y git ansible-core
   git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
   cd HPC_CryptoCluster
