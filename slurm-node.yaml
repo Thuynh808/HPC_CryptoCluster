@@ -41,5 +41,11 @@
     loop:
       - 'Group=slurm'
       - 'User=slurm'
+  - name: slurmd permissions
+    shell: "{{ item }}"
+    loop:
+      - 'mkdir -p /var/log/slurm /var/run/slurm /var/spool/slurm'
+      - 'chown -R slurm:slurm /var/log/slurm /var/run/slurm /var/spool/slurm'
+      - 'chmod -R 755 /var/log/slurm /var/run/slurm /var/spool/slurm'
   - name: enable slurmd
     shell: 'systemctl enable slurmd'
