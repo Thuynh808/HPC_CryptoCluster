@@ -74,6 +74,12 @@
     loop:
       - 'Group=slurm'
       - 'User=slurm'
+  - name: slurm permissions
+    shell: "{{ item }}"
+    loop:
+      - 'mkdir -p /var/log/slurm /var/run/slurm /var/spool/slurm.state'
+      - 'chown -R slurm:slurm /var/log/slurm /var/run/slurm /var/spool/slurm.state'
+      - 'chmod -R 755 /var/log/slurm /var/run/slurm /var/spool/slurm.state'
   - name: restart
     service: 
       name: "{{ item }}"
