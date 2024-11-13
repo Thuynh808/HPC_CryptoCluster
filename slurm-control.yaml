@@ -18,9 +18,7 @@
     loop:
       - epel-release
       - munge
-      - munge-libs
       - slurm
-      - slurm-perlapi
   - name: install slurmctld
     yum:
       name: slurm-slurmctld
@@ -29,7 +27,7 @@
     shell: "{{ item }}"
     loop:
       - 'wwctl container syncuser --write rockylinux-9 --build'
-      - 'dd if=/dev/urandom bs=1 count=1024 > /etc/munge/munge.key'
+      - 'create-munge-key -f'
   - name: chmod /etc/munge
     file:
       path: /etc/munge
