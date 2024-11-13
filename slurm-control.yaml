@@ -5,12 +5,6 @@
 - name: setup slurm
   hosts: localhost
   tasks:
-  - name: create slurm user
-    user:
-      name: slurm
-      uid: 800
-      create_home: false
-      system: true
   - name: install slurm packages
     yum:
       name: "{{ item }}"
@@ -19,10 +13,14 @@
       - epel-release
       - munge
       - slurm
-  - name: install slurmctld
-    yum:
-      name: slurm-slurmctld
-      state: present
+      - slurm-slurmctld
+  - name: create slurm user
+    user:
+      name: slurm
+      uid: 800
+      create_home: false
+      system: true
+      groups: munge
   - name: syncuser and generate munge key
     shell: "{{ item }}"
     loop:
