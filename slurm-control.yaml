@@ -25,11 +25,11 @@
     yum:
       name: slurm-slurmctld
       state: present
-  - name: generate munge key and syncuser 
+  - name: syncuser and generate munge key
     shell: "{{ item }}"
     loop:
-      - 'dd if=/dev/urandom bs=1 count=1024 > /etc/munge/munge.key'
       - 'wwctl container syncuser --write rockylinux-9 --build'
+      - 'dd if=/dev/urandom bs=1 count=1024 > /etc/munge/munge.key'
   - name: chmod /etc/munge
     file:
       path: /etc/munge
@@ -38,7 +38,7 @@
   - name: chown munge.key
     file:
       path: /etc/munge/munge.key
-      mode: '0400'
+      mode: '0600'
       owner: munge
       group: munge
   - name: configure overlay for munge.key
