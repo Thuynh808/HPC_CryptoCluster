@@ -32,5 +32,14 @@
     template:
       src: slurm.j2
       dest: /etc/slurm/slurm.conf
+  - name: slurmctld service runs as slurm user
+    lineinfile:
+      path: /usr/lib/systemd/system/slurmctld.service
+      insertafter: '^\[Service\]$'
+      line: "{{ item }}"
+      state: present
+    loop:
+      - 'Group=slurm'
+      - 'User=slurm'
   - name: enable slurmd
     shell: 'systemctl enable slurmd'
