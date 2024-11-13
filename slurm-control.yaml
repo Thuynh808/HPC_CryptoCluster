@@ -27,7 +27,7 @@
     shell: "{{ item }}"
     loop:
       - 'wwctl container syncuser --write rockylinux-9 --build'
-      - 'create-munge-key -f'
+      - 'munge -n -u 0 -U 0 -g 0 -G 0'
   - name: chmod /etc/munge
     file:
       path: /etc/munge
