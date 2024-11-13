@@ -32,9 +32,9 @@
     template:
       src: slurm.j2
       dest: /etc/slurm/slurm.conf
-  - name: slurmctld service runs as slurm user
+  - name: slurmd service runs as slurm user
     lineinfile:
-      path: /usr/lib/systemd/system/slurmctld.service
+      path: /usr/lib/systemd/system/slurmd.service
       insertafter: '^\[Service\]$'
       line: "{{ item }}"
       state: present
