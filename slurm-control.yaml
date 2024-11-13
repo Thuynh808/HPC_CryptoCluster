@@ -27,7 +27,7 @@
     shell: "{{ item }}"
     loop:
       - 'wwctl container syncuser --write rockylinux-9 --build'
-      - 'munge -n -u 0 -U 0 -g 0 -G 0'
+      - 'create-munge-key'
   - name: chmod /etc/munge
     file:
       path: /etc/munge
@@ -67,6 +67,15 @@
       dest: /etc/slurm/slurm.conf
   - name: create filesystem
     shell: "echo 'y' | wwctl node set node1 node2 node3 --diskname /dev/sda --diskwipe --partname scratch --partcreate --partnumber 1 --fsname scratch --fsformat ext4 --fspath /scratch"
+  - name: slurmctld service runs as slurm user
+    lineinfile:
+      path: /usr/lib/systemd/system/slurmctld.service
+      insertafter: '^\[Service\]$'
+      line: "{{ item }}"
+      state: present
+    loop:
+      - 'Group=slurm'
+      - 'User=slurm'
   - name: restart
     service: 
       name: "{{ item }}"
