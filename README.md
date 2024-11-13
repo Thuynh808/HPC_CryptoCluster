@@ -26,14 +26,10 @@
   ```bash
   passwd #set password
   ```
-- **Install `git` and `ansible-core`**
-
-  ```bash
-  dnf install -y git ansible-core
-  ```
 - **Clone repo and run playbooks to configure container image**
 
   ```bash
+  dnf install -y git ansible-core
   git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
   cd HPC_CryptoCluster
   ansible-galaxy collection install -r requirements.yaml -vv
