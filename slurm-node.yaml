@@ -19,6 +19,7 @@
       - slurm  
       - ignition
       - gdisk
+      - vim
   - name: create slurm user
     user:
       name: slurm
