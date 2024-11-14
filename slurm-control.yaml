@@ -61,6 +61,7 @@
       - 6817/tcp
       - 6818/tcp
       - 4050/udp
+      - 408/udp
   - name: copy slurm config file
     template:
       src: slurm.j2
