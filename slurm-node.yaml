@@ -32,20 +32,11 @@
     template:
       src: slurm.j2
       dest: /etc/slurm/slurm.conf
-  - name: slurmd service runs as slurm user
-    lineinfile:
-      path: /usr/lib/systemd/system/slurmd.service
-      insertafter: '^\[Service\]$'
-      line: "{{ item }}"
-      state: present
-    loop:
-      - 'Group=slurm'
-      - 'User=slurm'
   - name: slurmd permissions
     shell: "{{ item }}"
     loop:
       - 'mkdir -p /var/log/slurm /var/run/slurm /var/spool/slurmd.spool'
-      - 'chown -R slurm:slurm /var/log/slurm /var/run/slurm /var/spool/slurm'
+      - 'chown -R slurm:slurm /var/log/slurm /var/run/slurm /var/spool/slurmd.spool'
       - 'chmod -R 755 /var/log/slurm /var/run/slurm /var/spool/slurmd.spool'
   - name: enable slurmd
     shell: 'systemctl enable slurmd'
