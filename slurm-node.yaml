@@ -19,8 +19,6 @@
     user:
       name: slurm
       uid: 800
-      create_home: false
-      system: true
       groups: munge
   - name: install slurmd
     yum:
