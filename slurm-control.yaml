@@ -23,7 +23,7 @@
     shell: "{{ item }}"
     loop:
       - 'wwctl container syncuser --write rockylinux-9 --build'
-      - 'create-munge-key'
+      - 'create-munge-key -f'
   - name: chmod /etc/munge
     file:
       path: /etc/munge
@@ -59,7 +59,6 @@
       permanent: true
     loop:
       - 6817/tcp
-      - 6818/tcp
       - 4050/udp
       - 408/udp
   - name: copy slurm config file
