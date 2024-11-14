@@ -2,7 +2,7 @@
 # Project: HPC_CryptoCluster
 # Primary Slurm Control Host
 ClusterName=HPC_CryptoCluster
-SlurmctldHost=control.streetrack.org(10.2.22.10)
+SlurmctldHost={{ hostvars['localhost']['ansible_fqdn'] }}({{ hostvars['localhost']['ansible_host'] }})
 
 # Authentication and Security Settings
 AuthType=auth/munge
