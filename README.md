@@ -19,9 +19,10 @@
   ansible-playbook warewulf.yaml -vv
   ```
 - **Configure container image**
-
   ```bash
   wwctl container shell rockylinux-9
+  ```
+  ```bash
   dnf install -y git ansible-core
   git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
   cd HPC_CryptoCluster
