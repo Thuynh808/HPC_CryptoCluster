@@ -1,5 +1,5 @@
 ---
-- name: create hash file for testing john
+- name: test john
   hosts: localhost
   tasks:
   - name: create hash for password 'pegasis1'
@@ -12,4 +12,10 @@
     copy:
       content: 'streetrack:{{ hash.stdout }}'
       dest: ./john_hash.txt
-
+  - name: create log files for slurm jobs
+    file:
+      path: "{{ item }}"
+      state: touch
+    loop:
+      - '/home/slurm/john_result.log'
+      - '/home/slurm/john_error.log'
