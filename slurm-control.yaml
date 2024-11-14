@@ -5,6 +5,10 @@
 - name: setup slurm
   hosts: localhost
   tasks:
+  - name: sync local ntp
+    lineinfile:
+      path: /etc/chrony.conf
+      line: allow 10.2.22.0/24
   - name: install slurm packages
     yum:
       name: "{{ item }}"
