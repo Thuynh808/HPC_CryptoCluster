@@ -1,14 +1,8 @@
 #!/bin/bash
-#SBATCH --job-name=hostname_check   # Job name
-#SBATCH --output=test.log  # Output file
-#SBATCH --error=test_error.log    # Error file
-#SBATCH --nodelist=node1,node2,node3              # Specify node1
+#SBATCH --job-name=john_password
+#SBATCH --output=/home/john_result.log
+#SBATCH --error=/home/john_error.log
+#SBATCH --nodelist=node1
 
-# Command to check hostname
-hostname
-uptime
-lscpu
-free -h
-lsblk
-df -h 
+john --format=raw-SHA256 --wordlist=/opt/john/password.lst /home/john_hash.txt
 

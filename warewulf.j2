@@ -30,7 +30,7 @@ nfs:
   enabled: true
   export paths:
   - path: /home
-    export options: rw,sync
+    export options: rw,sync,no_root_squash
     mount options: defaults
     mount: true
   - path: /opt
