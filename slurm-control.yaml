@@ -53,12 +53,15 @@
     loop:
       - munge
 
-  - name: port
+  - name: ports
     firewalld:
-      port: 6817/tcp
+      port: "{{ item }}"
       state: enabled
       immediate: true
-      permanent: true    
+      permanent: true
+    loop:
+      - 6817/tcp
+      - 4050/udp
   - name: copy slurm config file
     template:
       src: slurm.j2
