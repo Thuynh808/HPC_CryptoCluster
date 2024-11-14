@@ -65,6 +65,7 @@
       - 6817/tcp
       - 4050/udp
       - 408/udp
+      - 123/tcp
   - name: copy slurm config file
     template:
       src: slurm.j2
@@ -94,3 +95,4 @@
     loop:
       - firewalld
       - slurmctld
+      - chronyd
