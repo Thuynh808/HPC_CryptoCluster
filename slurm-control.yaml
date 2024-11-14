@@ -63,7 +63,6 @@
       permanent: true
     loop:
       - 6817/tcp
-      - 6818/tcp
       - 4050/udp
       - 408/udp
       - 123/tcp
