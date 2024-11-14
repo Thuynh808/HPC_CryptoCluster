@@ -8,7 +8,7 @@
   - name: sync local ntp
     lineinfile:
       path: /etc/chrony.conf
-      line: allow 10.2.22.0/24
+      line: 'allow 10.2.22.0/24'
   - name: install slurm packages
     yum:
       name: "{{ item }}"
@@ -63,6 +63,7 @@
       permanent: true
     loop:
       - 6817/tcp
+      - 6818/tcp
       - 4050/udp
       - 408/udp
       - 123/tcp
