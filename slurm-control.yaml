@@ -17,7 +17,7 @@
   - name: create slurm user
     user:
       name: slurm
-      uid: 800
+      uid: 1000
       groups: munge
   - name: syncuser and generate munge key
     shell: "{{ item }}"
