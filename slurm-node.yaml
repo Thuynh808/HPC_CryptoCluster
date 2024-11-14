@@ -5,6 +5,10 @@
 - name: setup slurm
   hosts: localhost
   tasks:
+  - name: sync ntp 
+    lineinfile:
+      path: /etc/chrony.conf
+      line: 'server {{ hostvars['localhost']['ansible_host'] }} iburst'
   - name: install packages
     yum:
       name: "{{ item }}"
