@@ -12,13 +12,6 @@
     copy:
       content: 'streetrack:{{ hash.stdout }}'
       dest: /home/slurm/john_hash.txt
-  - name: create log files for slurm jobs
-    file:
-      path: "{{ item }}"
-      state: touch
-    loop:
-      - '/home/slurm/john_result.log'
-      - '/home/slurm/john_error.log'
   - name: copy test.sh to nfs share
     copy:
       src: ./test.sh
