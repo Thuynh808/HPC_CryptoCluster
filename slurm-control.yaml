@@ -56,8 +56,8 @@
     loop:
       - 'wwctl overlay create slurm'
       - 'wwctl overlay import -p slurm /etc/munge/munge.key'
-      - 'wwctl overlay import -p slurm /scratch/john_result.log'
-      - 'wwctl overlay import -p slurm /scratch/john_error.log'
+      - 'wwctl overlay import -p -n slurm /scratch/john_result.log'
+      - 'wwctl overlay import -p -n slurm /scratch/john_error.log'
       - 'wwctl overlay chmod slurm /etc/munge 0755'
       - 'wwctl overlay chmod slurm /scratch 0755'
       - "echo 'y' | wwctl profile set default --runtime=generic,slurm"
