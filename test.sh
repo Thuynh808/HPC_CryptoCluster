@@ -4,5 +4,5 @@
 #SBATCH --error=/home/slurm/john_error.log
 #SBATCH --nodelist=node1
 
-john --format=raw-SHA256 --wordlist=/opt/john/password.lst /home/slurm/john_hash.txt
+/opt/john/run/john --format=raw-sha256 --rules=Jumbo --fork=2 --wordlist=/opt/john/run/password.lst /home/slurm/john_hash.txt
 

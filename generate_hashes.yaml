@@ -2,8 +2,8 @@
 - name: test john
   hosts: localhost
   tasks:
-  - name: create hash for password 'pegasis1'
-    shell: "echo -n 'pegasis1' | sha256sum | cut -d ' ' -f 1"
+  - name: create hash for password
+    shell: "echo -n 'Safew@y21!' | sha256sum | cut -d ' ' -f 1"
     register: hash
   - name: debug
     debug:
@@ -11,7 +11,7 @@
   - name: create file
     copy:
       content: 'streetrack:{{ hash.stdout }}'
-      dest: ./john_hash.txt
+      dest: /home/slurm/john_hash.txt
   - name: create log files for slurm jobs
     file:
       path: "{{ item }}"
@@ -19,3 +19,8 @@
     loop:
       - '/home/slurm/john_result.log'
       - '/home/slurm/john_error.log'
+  - name: copy test.sh to nfs share
+    copy:
+      src: ./test.sh
+      dest: /home/slurm/test.sh
+      mode: '0755'
