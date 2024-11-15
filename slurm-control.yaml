@@ -39,27 +39,12 @@
       mode: '0600'
       owner: munge
       group: munge
-  - name: create /scratch directory
-    file:
-      path: /scratch
-      state: directory
-  - name: create log files for john
-    file:
-      path: "{{ item }}"
-      state: touch
-      mode: '0666'
-    loop:
-      - '/scratch/john_result.log'
-      - '/scratch/john_error.log'
   - name: configure overlay for munge.key and john logs
     shell: "{{ item }}"
     loop:
       - 'wwctl overlay create slurm'
       - 'wwctl overlay import -p slurm /etc/munge/munge.key'
-      - 'wwctl overlay import -p -n slurm /scratch/john_result.log'
-      - 'wwctl overlay import -p -n slurm /scratch/john_error.log'
       - 'wwctl overlay chmod slurm /etc/munge 0755'
-      - 'wwctl overlay chmod slurm /scratch 0755'
       - "echo 'y' | wwctl profile set default --runtime=generic,slurm"
       - 'wwctl overlay build -NH'
   - name: restart services
