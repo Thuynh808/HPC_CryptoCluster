@@ -70,8 +70,6 @@
     template:
       src: slurm.j2
       dest: /etc/slurm/slurm.conf
-  - name: create filesystem
-    shell: "echo 'y' | wwctl node set node1 node2 node3 --diskname /dev/sda --diskwipe --partname scratch --partcreate --partnumber 1 --fsname scratch --fsformat ext4 --fspath /scratch"
   - name: slurmctld service runs as slurm user
     lineinfile:
       path: /usr/lib/systemd/system/slurmctld.service

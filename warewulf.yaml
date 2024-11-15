@@ -44,6 +44,7 @@
       - wwctl node set node2 -C rockylinux-9 -y
       - wwctl node set node3 -C rockylinux-9 -y
       - wwctl overlay build -NH
+      - "echo 'y' | wwctl node set node1 node2 node3 --diskname /dev/sda --diskwipe --partname scratch --partcreate --partnumber 1 --fsname scratch --fsformat ext4 --fspath /scratch"
 
   - name: open firewall ports for services
     firewalld:
