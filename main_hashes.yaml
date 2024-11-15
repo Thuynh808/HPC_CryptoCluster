@@ -1,0 +1,55 @@
+---
+- name: main john test
+  hosts: localhost
+  tasks:
+  - name: create hash for password
+    shell: "echo -n 'ssambarockk' | sha256sum | cut -d ' ' -f 1"
+    register: hash1
+  - name: create hash for password
+    shell: "echo -n 'FOXxIE98' | sha256sum | cut -d ' ' -f 1"
+    register: hash2
+  - name: create hash for password
+    shell: "echo -n 'Lego#las21' | sha256sum | cut -d ' ' -f 1"
+    register: hash3
+  - name: create hash for password
+    shell: "echo -n 'RAInwatEr7' | sha256sum | cut -d ' ' -f 1"
+    register: hash4
+  - name: create hash for password
+    shell: "echo -n 'sstayoff4k' | sha256sum | cut -d ' ' -f 1"
+    register: hash5
+  - name: create hash for password
+    shell: "echo -n 'Safeway21123' | sha256sum | cut -d ' ' -f 1"
+    register: hash6
+
+  - name: set_facts
+    set_fact:
+      streetrack: 'streetrack:{{ hash1.stdout }}'
+      admin: 'admin:{{ hash2.stdout }}'
+      root: 'root:{{ hash3.stdout }}'
+      mysql: 'mysql:{{ hash4.stdout }}'
+      elastic: 'elastic:{{ hash5.stdout }}'
+      Administrator: 'Administrator:{{ hash6.stdout }}'
+
+  - name: create passwd file
+    copy:
+      content: |
+        {{ streetrack }}
+        {{ admin }}
+        {{ root }}
+        {{ mysql }}
+        {{ elastic }}
+        {{ Administrator }}
+      dest: /home/slurm/main_hash.txt
+  - name: create log files
+    file:
+      path: "{{ item }}"
+      state: touch
+      mode: '0666'
+    loop:
+      - '/home/slurm/main_error.log'
+      - '/home/slurm/main_result.log'
+  - name: copy test_main.sh to nfs share
+    copy:
+      src: ./main_test.sh
+      dest: /home/slurm/main_test.sh
+      mode: '0755'
