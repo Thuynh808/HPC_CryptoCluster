@@ -39,3 +39,17 @@
   ```bash
   ansible-playbook john_hashes.yaml -vv
   ```
+- **Start compute nodes**
+  <br><br>
+- **from controller node execute sbatch command**
+  ```bash
+  cd /home/slurm
+  sbatch john_test.sh
+  ```
+- **view log files and job status**
+  ```bash
+  squeue -l
+  scontrol show job "jobID"
+  cat john_result.log
+  cat john_error.log
+  ```
