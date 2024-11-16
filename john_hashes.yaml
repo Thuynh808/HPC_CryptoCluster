@@ -65,4 +65,4 @@
       mode: '0755'
     loop:
       - './john_test.sh'
-      - './john_distributed_test.sh'
+      - './john_distributed.sh'

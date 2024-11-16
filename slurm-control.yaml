@@ -93,8 +93,6 @@
     loop:
       - '/home/slurm/john_error.log'
       - '/home/slurm/john_result.log'
-      - '/home/slurm/john_distributed_error.log'
-      - '/home/slurm/john_distributed_result.log'
   - name: restart
     service: 
       name: "{{ item }}"
