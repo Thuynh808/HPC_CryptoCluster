@@ -35,5 +35,6 @@
     shell: "{{ item }}"
     loop:
       - 'wwctl overlay create john'
-      - 'cp -r /scratch/john/run /var/lib/warewulf/overlays/john/'
+      - 'wwctl overlay mkdir john /scratch/john'
+      - 'cp -r /scratch/john/run /var/lib/warewulf/overlays/john/scratch/john/'
       - 'wwctl overlay build -NH'
