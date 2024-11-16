@@ -31,12 +31,9 @@
   ansible-playbook slurm-node.yaml -vv
   exit #rebuild container image
   ```
-- **run slurm/munge setup playbook**
+- **run slurm/munge setup and hashes for testing**
   ```bash
   ansible-playbook slurm-control.yaml -vv
-  ```
-- **create hashes/scripts for testing john playbook**
-  ```bash
   ansible-playbook john_hashes.yaml -vv
   ```
 - **Start compute nodes**
@@ -52,4 +49,16 @@
   scontrol show job "jobID"
   cat john_result.log
   cat john_error.log
+  ```
+- **execute distributed sbatch command**
+  ```bash
+  cd /home/slurm
+  sbatch john_distributed.sh
+  ```
+- **view log files and job status**
+  ```bash
+  squeue -l
+  scontrol show job "jobID"
+  cat john_distributed_result.log
+  cat john_distributed_error.log
   ```
