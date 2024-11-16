@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
   - name: create hash for password
-    shell: "echo -n 'ssambarockk' | sha256sum | cut -d ' ' -f 1"
+    shell: "echo -n 's@mbarock' | sha256sum | cut -d ' ' -f 1"
     register: hash1
   - name: create hash for password
     shell: "echo -n 'FOXxIE98' | sha256sum | cut -d ' ' -f 1"
