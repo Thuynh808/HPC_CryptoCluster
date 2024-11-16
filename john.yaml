@@ -11,19 +11,29 @@
       - make
       - gcc
       - openssl-devel
+  - name: create /scratch directory
+    file:
+      path: /scratch
+      state: directory
   - name: git clone
     git:
       repo: 'https://github.com/openwall/john.git'
-      dest: /opt/john
+      dest: /scratch/john
       clone: true
   - name: compile john
     shell: "{{ item }}"
     args:
-      chdir: /opt/john/src
+      chdir: /scratch/john/src
     loop:
       - './configure && make -sj4'
       - 'make -s clean && make -sj4'
   - name: create alias for john
     lineinfile:
       path: '/root/.bashrc'
-      line: 'alias john=/opt/john/run/john'
+      line: 'alias john=/scratch/john/run/john'
+  - name: create overlay for john
+    shell: "{{ item }}"
+    loop:
+      - 'wwctl overlay create john'
+      - 'cp -r /scratch /var/lib/warewulf/overlays/john/'
+      - 'wwctl overlay build -NH'

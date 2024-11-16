@@ -13,10 +13,11 @@
   cd HPC_CryptoCluster
   ansible-galaxy collection install -r requirements.yaml -vv
   ```
-- **Run install playbook**
+- **Run install playbooks**
 
   ```bash
   ansible-playbook warewulf.yaml -vv
+  ansible-playbook john.yaml -vv
   ```
 - **Configure container image**
   ```bash
@@ -27,7 +28,6 @@
   git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
   cd HPC_CryptoCluster
   ansible-galaxy collection install -r requirements.yaml -vv
-  ansible-playbook john.yaml -vv
   ansible-playbook slurm-node.yaml -vv
   exit #rebuild container image
   ```

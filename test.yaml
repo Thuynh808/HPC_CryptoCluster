@@ -1,0 +1,11 @@
+---
+- name: test
+  hosts: localhost
+  tasks:
+  - name: create overlay for john
+    shell: "{{ item }}"
+    loop:
+      - 'wwctl overlay create john'
+      - 'wwctl overlay import -p john /scratch/john/*'
+      - 'wwctl overlay build -NH'
+
