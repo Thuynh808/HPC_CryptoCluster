@@ -100,6 +100,10 @@
         {{ helpdesk }}
         {{ streetrack }}
       dest: /home/slurm/john_hash.txt
+  - name: create slurm directory on nfs share
+    file:
+      path: /home/slurm
+      state: directory
   - name: copy test scripts to nfs share
     copy:
       src: "{{ item }}"
