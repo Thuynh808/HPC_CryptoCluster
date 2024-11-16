@@ -86,6 +86,10 @@
       superuser: 'superuser:{{ hash8.stdout }}'
       helpdesk: 'helpdesk:{{ hash9.stdout }}'
       streetrack: 'streetrack:{{ hash10.stdout }}'
+  - name: create slurm directory on nfs share
+    file:
+      path: /home/slurm
+      state: directory
   - name: create passwd file
     copy:
       content: |
@@ -100,10 +104,6 @@
         {{ helpdesk }}
         {{ streetrack }}
       dest: /home/slurm/john_hash.txt
-  - name: create slurm directory on nfs share
-    file:
-      path: /home/slurm
-      state: directory
   - name: copy test scripts to nfs share
     copy:
       src: "{{ item }}"
