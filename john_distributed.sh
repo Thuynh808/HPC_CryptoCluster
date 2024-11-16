@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=john_distributed_test
-#SBATCH --output=/home/slurm/john_distributed_error.log
-#SBATCH --error=/home/slurm/john_distributed_result.log
+#SBATCH --output=/home/slurm/john_distributed_result.log
+#SBATCH --error=/home/slurm/john_distributed_error.log
 #SBATCH --nodes=3
 #SBATCH --ntasks=3
 
