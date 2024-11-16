@@ -47,7 +47,7 @@
   - name: create passwd file
     copy:
       content: |
-        {{ streetrack }}
+        {{ user1 }}
         {{ admin }}
         {{ root }}
         {{ mysql }}
@@ -56,7 +56,7 @@
         {{ service }}
         {{ superuser }}
         {{ helpdesk }}
-        {{ user1 }}
+        {{ streetrack }}
       dest: /home/slurm/john_hash.txt
   - name: create log files
     file:
