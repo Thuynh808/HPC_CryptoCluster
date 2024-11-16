@@ -1,7 +1,7 @@
 # HPC_CryptoCluster
 
 
-- **Install `git` and `ansible-core`**
+- **Install git and ansible-core**
   ```bash
   dnf install -y git ansible-core
   ```
