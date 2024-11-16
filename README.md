@@ -2,19 +2,16 @@
 
 
 - **Install `git` and `ansible-core`**
-  
   ```bash
   dnf install -y git ansible-core
   ```
 - **Clone the repository**
-  
   ```bash
   git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
   cd HPC_CryptoCluster
   ansible-galaxy collection install -r requirements.yaml -vv
   ```
 - **Run install playbooks**
-
   ```bash
   ansible-playbook warewulf.yaml -vv
   ansible-playbook john.yaml -vv
@@ -42,22 +39,8 @@
   cd /home/slurm
   sbatch john_test.sh
   ```
-- **view log files and job status**
-  ```bash
-  squeue -l
-  scontrol show job "jobID"
-  cat john_result.log
-  cat john_error.log
-  ```
 - **second test: john distributed test.  execute distributed sbatch command**
   ```bash
   cd /home/slurm
   sbatch john_distributed.sh
-  ```
-- **view log files and job status**
-  ```bash
-  squeue -l
-  scontrol show job "jobID"
-  cat john_distributed_result.log
-  cat john_distributed_error.log
   ```
