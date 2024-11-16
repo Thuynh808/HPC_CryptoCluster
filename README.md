@@ -35,3 +35,7 @@
   ```bash
   ansible-playbook slurm-control.yaml -vv
   ```
+- **create hashes/scripts for testing john playbook**
+  ```bash
+  ansible-playbook john_hashes.yaml -vv
+  ```
