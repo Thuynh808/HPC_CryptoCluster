@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=test_john
+#SBATCH --job-name=john_test
 #SBATCH --output=/home/slurm/john_result.log
 #SBATCH --error=/home/slurm/john_error.log
 #SBATCH --nodelist=node1
