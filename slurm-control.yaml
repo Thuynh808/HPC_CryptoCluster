@@ -85,6 +85,16 @@
       - 'mkdir -p /var/log/slurm /var/run/slurm /var/spool/slurm.state'
       - 'chown -R slurm:slurm /var/log/slurm /var/run/slurm /var/spool/slurm.state'
       - 'chmod -R 755 /var/log/slurm /var/run/slurm /var/spool/slurm.state'
+  - name: create log files for slurm/john
+    file:
+      path: "{{ item }}"
+      state: touch
+      mode: '0666'
+    loop:
+      - '/home/slurm/john_error.log'
+      - '/home/slurm/john_result.log'
+      - '/home/slurm/john_distributed_error.log'
+      - '/home/slurm/john_distributed_result.log'
   - name: restart
     service: 
       name: "{{ item }}"

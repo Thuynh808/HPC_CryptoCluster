@@ -36,5 +36,6 @@
     loop:
       - 'wwctl overlay create john'
       - 'wwctl overlay mkdir john /scratch/john'
+      - ' split -n 3 -d /scratch/john/run/password.lst /scratch/john/run/passwordlist_'
       - 'cp -r /scratch/john/run /var/lib/warewulf/overlays/john/scratch/john/'
       - 'wwctl overlay build -NH'

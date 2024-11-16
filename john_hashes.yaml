@@ -58,16 +58,11 @@
         {{ helpdesk }}
         {{ streetrack }}
       dest: /home/slurm/john_hash.txt
-  - name: create log files
-    file:
-      path: "{{ item }}"
-      state: touch
-      mode: '0666'
-    loop:
-      - '/home/slurm/john_error.log'
-      - '/home/slurm/john_result.log'
-  - name: copy john_test.sh to nfs share
+  - name: copy test scripts to nfs share
     copy:
-      src: ./john_test.sh
-      dest: /home/slurm/john_test.sh
+      src: "{{ item }}"
+      dest: /home/slurm/
       mode: '0755'
+    loop:
+      - './john_test.sh'
+      - './john_distributed_test.sh'
