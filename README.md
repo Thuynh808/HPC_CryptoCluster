@@ -31,14 +31,13 @@
   ansible-playbook slurm-node.yaml -vv
   exit #rebuild container image
   ```
-- **run slurm/munge setup and hashes for testing**
+- **run slurm/munge setup for controller**
   ```bash
   ansible-playbook slurm-control.yaml -vv
-  ansible-playbook john_hashes.yaml -vv
   ```
 - **Start compute nodes**
   <br><br>
-- **from controller node execute sbatch command**
+- **first test: john single node crack. from controller node execute sbatch command**
   ```bash
   cd /home/slurm
   sbatch john_test.sh
@@ -50,7 +49,7 @@
   cat john_result.log
   cat john_error.log
   ```
-- **execute distributed sbatch command**
+- **second test: john distributed test.  execute distributed sbatch command**
   ```bash
   cd /home/slurm
   sbatch john_distributed.sh

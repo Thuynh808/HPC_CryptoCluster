@@ -36,6 +36,76 @@
     loop:
       - 'wwctl overlay create john'
       - 'wwctl overlay mkdir john /scratch/john'
-      - ' split -n 3 -d /scratch/john/run/password.lst /scratch/john/run/passwordlist_'
+      - 'split -n 3 -d /scratch/john/run/password.lst /scratch/john/run/passwordlist_'
       - 'cp -r /scratch/john/run /var/lib/warewulf/overlays/john/scratch/john/'
       - 'wwctl overlay build -NH'
+
+
+- name: john hashes for tests
+  hosts: localhost
+  tasks:
+  - name: create hash for password
+    shell: "echo -n 'm0n3y4m3' | sha256sum | cut -d ' ' -f 1"
+    register: hash1
+  - name: create hash for password
+    shell: "echo -n 'FOXxIE98' | sha256sum | cut -d ' ' -f 1"
+    register: hash2
+  - name: create hash for password
+    shell: "echo -n 'Lego#las21' | sha256sum | cut -d ' ' -f 1"
+    register: hash3
+  - name: create hash for password
+    shell: "echo -n 'RAInwatEr7' | sha256sum | cut -d ' ' -f 1"
+    register: hash4
+  - name: create hash for password
+    shell: "echo -n 'sstayoff4k' | sha256sum | cut -d ' ' -f 1"
+    register: hash5
+  - name: create hash for password
+    shell: "echo -n 'Safeway21123' | sha256sum | cut -d ' ' -f 1"
+    register: hash6
+  - name: create hash for password
+    shell: "echo -n '|aekwondo17' | sha256sum | cut -d ' ' -f 1"
+    register: hash7
+  - name: create hash for password
+    shell: "echo -n 'FArMbOy33' | sha256sum | cut -d ' ' -f 1"
+    register: hash8
+  - name: create hash for password
+    shell: "echo -n 'Hawa1187' | sha256sum | cut -d ' ' -f 1"
+    register: hash9
+  - name: create hash for password
+    shell: "echo -n 's@mbarock' | sha256sum | cut -d ' ' -f 1"
+    register: hash10
+  - name: set_facts
+    set_fact:
+      user1: 'user1:{{ hash1.stdout }}'
+      admin: 'admin:{{ hash2.stdout }}'
+      root: 'root:{{ hash3.stdout }}'
+      mysql: 'mysql:{{ hash4.stdout }}'
+      elastic: 'elastic:{{ hash5.stdout }}'
+      Administrator: 'Administrator:{{ hash6.stdout }}'
+      service: 'service:{{ hash7.stdout }}'
+      superuser: 'superuser:{{ hash8.stdout }}'
+      helpdesk: 'helpdesk:{{ hash9.stdout }}'
+      streetrack: 'streetrack:{{ hash10.stdout }}'
+  - name: create passwd file
+    copy:
+      content: |
+        {{ user1 }}
+        {{ admin }}
+        {{ root }}
+        {{ mysql }}
+        {{ elastic }}
+        {{ Administrator }}
+        {{ service }}
+        {{ superuser }}
+        {{ helpdesk }}
+        {{ streetrack }}
+      dest: /home/slurm/john_hash.txt
+  - name: copy test scripts to nfs share
+    copy:
+      src: "{{ item }}"
+      dest: /home/slurm/
+      mode: '0755'
+    loop:
+      - './john_test.sh'
+      - './john_distributed.sh'
+
