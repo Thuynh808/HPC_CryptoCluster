@@ -39,7 +39,7 @@
       mode: '0600'
       owner: munge
       group: munge
-  - name: configure overlay for munge.key and john logs
+  - name: configure overlay for munge.key and set profile
     shell: "{{ item }}"
     loop:
       - 'wwctl overlay create slurm'
