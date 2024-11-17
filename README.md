@@ -88,7 +88,7 @@ ssh node1 systemctl status slurmd
 
 - **Confirm nodes are properly up**
 ```bash
-ssh node1
+ssh node3
 ```
 ```bash
 dmesg | head
