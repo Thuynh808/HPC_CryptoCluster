@@ -68,4 +68,5 @@
   wwctl node list -l && wwctl node list -n
   wwctl node list -a | tail -9
   systemctl status warewulfd.service
+  firewall-cmd --list-all
   ```
