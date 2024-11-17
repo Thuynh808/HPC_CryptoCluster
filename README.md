@@ -67,7 +67,7 @@
 ```bash
 wwctl node list -l && wwctl node list -n
 wwctl node list -a | tail -9
-systemctl status warewulfd.service
+systemctl status warewulfd.service --no-pager
 firewall-cmd --list-all
 ```
 
@@ -81,13 +81,14 @@ john --test --format=raw-sha256
 
 - **Confirm slurm and munge are operational**
 ```bash
-systemctl status slurmctld munge
+systemctl status slurmctld munge --no-pager
 munge -n | ssh node1 unmunge
 ssh node1 systemctl status slurmd
 ```
 
 - **Confirm nodes are properly up**
 ```bash
+ssh node1
 dmesg | head
 cat /etc/hosts
 sinfo -l
