@@ -1,12 +1,9 @@
 # HPC_CryptoCluster
 
 
-- **Install git and ansible-core**
+- **install git, ansible, collections, and clone the repository**
   ```bash
   dnf install -y git ansible-core
-  ```
-- **Clone the repository**
-  ```bash
   git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
   cd HPC_CryptoCluster
   ansible-galaxy collection install -r requirements.yaml -vv
@@ -28,7 +25,7 @@
   ansible-playbook slurm-node.yaml -vv
   exit #rebuild container image
   ```
-- **run slurm/munge setup for controller**
+- **install and configure slurm/munge setup for controller**
   ```bash
   ansible-playbook slurm-control.yaml -vv
   ```
