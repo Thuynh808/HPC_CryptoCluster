@@ -31,16 +31,6 @@
   ```
 - **Start compute nodes**
   <br><br>
-- **first test: john single node crack. from controller node execute sbatch command**
-  ```bash
-  cd /home/slurm
-  sbatch john_test.sh
-  ```
-- **second test: john distributed test.  execute distributed sbatch command**
-  ```bash
-  cd /home/slurm
-  sbatch john_distributed.sh
-  ```
 
 
 
@@ -96,5 +86,22 @@ cat /etc/hosts
 sinfo -l
 scontrol show node
 ```
+---
+
+- **first test: john single node crack. from controller node execute sbatch command**
+  ```bash
+  cd /home/slurm
+  sbatch john_test.sh
+  ```
+  ```bash
+  cd /home/slurm
+  sbatch john_test.sh
+  ```
+
+- **second test: john distributed test.  execute distributed sbatch command**
+  ```bash
+  cd /home/slurm
+  sbatch john_distributed.sh
+  ```
 
 
