@@ -41,3 +41,30 @@
   cd /home/slurm
   sbatch john_distributed.sh
   ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  - **Confirm warewulf service is up and node overlays configured**
+  ```bash
+  wwctl node list -l && wwctl node list -n
+  wwctl node list -a | tail -9
+  ```
