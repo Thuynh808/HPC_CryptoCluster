@@ -70,10 +70,25 @@ wwctl node list -a | tail -9
 systemctl status warewulfd.service
 firewall-cmd --list-all
 ```
+
 - **Confirm password file and Run a simple test with John**
 ```bash
 cd /home/slurm
 ls -l
 cat john_hash.txt
 john --test --format=raw-sha256
+```
+
+- **Confirm slurm and munge are operational**
+```bash
+systemctl status slurmctld munge
+munge -n | ssh node1 unmunge
+ssh node1 systemctl status slurmd
+```
+
+- **Confirm nodes are properly up**
+```bash
+dmesg | head
+cat /etc/hosts
+sinfo -l
 ```
