@@ -9,11 +9,6 @@
     lineinfile:
       path: /etc/chrony.conf
       line: "server {{ hostvars['localhost']['ansible_host'] }} iburst"
-  - name: remove pool
-    lineinfile:
-      path: /etc/chrony.conf
-      regex: '^pool 2.pool.ntp.org iburst'
-      line: '# pool 2.pool.ntp.org iburst'
   - name: install packages
     yum:
       name: "{{ item }}"
