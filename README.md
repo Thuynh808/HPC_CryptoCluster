@@ -94,8 +94,8 @@ cd /home/slurm
 sbatch john_test.sh
 ```
 ```bash
-scontrol show job &lt;JobId&gt;
-cat /home/slurm/john_result
+scontrol show job <JobId>
+cat /home/slurm/john_result.log
 ```
 
 - **second test: john distributed test.  execute distributed sbatch command**
@@ -104,8 +104,8 @@ cd /home/slurm
 sbatch john_distributed.sh
 ```
 ```bash
-scontrol show job &lt;JobId&gt;
-cat /home/slurm/john_result
+scontrol show job <JobId>
+cat /home/slurm/john_distributed_result.log
 ```
 
 
