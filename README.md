@@ -92,6 +92,7 @@ scontrol show node
 ```bash
 cd /home/slurm
 sbatch john_test.sh
+sinfo -l
 ```
 ```bash
 scontrol show job <JobId>
