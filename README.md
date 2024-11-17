@@ -63,10 +63,17 @@
 
 
 
-  - **Confirm warewulf service is up and node overlays configured**
-  ```bash
-  wwctl node list -l && wwctl node list -n
-  wwctl node list -a | tail -9
-  systemctl status warewulfd.service
-  firewall-cmd --list-all
-  ```
+- **Confirm warewulf service is up and node overlays configured**
+```bash
+wwctl node list -l && wwctl node list -n
+wwctl node list -a | tail -9
+systemctl status warewulfd.service
+firewall-cmd --list-all
+```
+- **Confirm password file and Run a simple test with John**
+```bash
+cd /home/slurm
+ls -l
+cat john_hash.txt
+john --test --format=raw-sha256
+```
