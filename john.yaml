@@ -71,9 +71,9 @@
     loop: "{{ password_data }}"
     register: hash_results
   - name: create slurm directory on NFS share
-      file:
-        path: /home/slurm
-        state: directory
+    file:
+      path: /home/slurm
+      state: directory
   - name: create passwd file with hashed passwords
     copy:
       content: |
