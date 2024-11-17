@@ -89,6 +89,8 @@ ssh node1 systemctl status slurmd
 - **Confirm nodes are properly up**
 ```bash
 ssh node1
+```
+```bash
 dmesg | head
 cat /etc/hosts
 sinfo -l
