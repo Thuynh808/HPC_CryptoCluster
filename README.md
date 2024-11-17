@@ -94,4 +94,7 @@ ssh node3
 dmesg | head
 cat /etc/hosts
 sinfo -l
+scontrol show node
 ```
+
+
