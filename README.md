@@ -31,25 +31,6 @@ ansible-playbook slurm-control.yaml -vv
 - **Start compute nodes**
 <br><br>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ---
 
 - **Confirm warewulf service is up and node overlays configured**
@@ -111,5 +92,6 @@ sinfo -l
 scontrol show job <JobId>
 cat /home/slurm/john_distributed_result.log
 ```
+---
 
 
