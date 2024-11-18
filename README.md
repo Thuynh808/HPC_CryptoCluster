@@ -2,9 +2,8 @@
 
 <details close>
 <summary> <h4>images</h4> </summary>
-  ![HPC_CryptoCluster](https://i.imgur.com/v4cEmFA.png)
-  ![HPC_CryptoCluster](https://i.imgur.com/ggrAsG8.png)
-  ![HPC_CryptoCluster](https://i.imgur.com/FaFgG7i.png)
+  
+
   ![HPC_CryptoCluster](https://i.imgur.com/Julx1xb.png)
   ![HPC_CryptoCluster](https://i.imgur.com/82vV2aF.png)
   ![HPC_CryptoCluster](https://i.imgur.com/UCc5IMD.png)
@@ -27,6 +26,7 @@ This project simulates a high-performance computing (HPC) cluster designed for d
 - **Operating System:** Rocky Linux provides a stable base for the cluster
 - **Virtualization:** VirtualBox hosts the virtual machines for each cluster node
 - **Network Boot:** iPXE enables compute nodes to boot over the network
+- **Automation:** Ansible automates configuration and deployment tasks across the cluster, streamlining setup and updates
 - **Cluster Management:** Warewulf manages and deploys the operating system and software configurations across compute nodes
 - **Job Scheduling:** Slurm workload manager that allocates resources and schedules jobs across the cluster
 - **Password Cracking Tool:** John the Ripper used to test the cluster's distributed password cracking jobs
@@ -37,25 +37,18 @@ This project simulates a high-performance computing (HPC) cluster designed for d
 | Component      | Version  |
 |----------------|----------|
 | Rocky Linux    | 9.4      |
-| VirtualBox     | 7.0      |    
+| VirtualBox     | 7.0      |   
+| Ansible        | 2.14     |   
 | Warewulf       | 4.5.7    |   
 | Slurm          | 22.05.9  |
 | Munge          | 0.5.13   |
 | JohnTheRipper  | 1.9.0    |
 
-### Environment Setup
+<br><br>
+## Environment Setup
 
-- Create NAT Network:
-  - In VirtualBox, create a NAT Network
-  - Disable DHCP
-- Create VMs:
-  - 1 Controller Node
-  - 3 Compute Nodes
-- Setup Network Boot:
-  - Assign all nodes to NAT Network
-  - Download and attach the iPXE ISO to each compute node’s virtual DVD drive to enable network booting
-  - Set boot order on compute nodes
-    
+In this section, we’ll set up the virtual infrastructure for the HPC_CryptoCluster project by creating a NAT network, configuring virtual machines, and enabling network boot so compute nodes can receive configurations. The table below shows each VM's specifications:
+
 | Server         | Role              | CPU | RAM  |
 |----------------|-------------------|-----|------|
 | Control        | Controller        | 4   | 8 GB |
@@ -63,21 +56,43 @@ This project simulates a high-performance computing (HPC) cluster designed for d
 | Node2          | Compute Node      | 2   | 4 GB |    
 | Node3          | Compute Node      | 2   | 4 GB |  
 
+- **Create NAT Network:**
+  - In VirtualBox, create a NAT Network
+  - Disable DHCP
+- **Create VMs:**
+  - 1 Controller Node(Rocky 9 ISO)
+  - 3 Compute Nodes(No image ISO)
+- **Setup Network Boot:**
+  - Assign all nodes to NAT Network
+  - Download and attach the iPXE ISO to each compute node’s virtual DVD drive to enable network booting
+  - Set boot order on compute nodes
+  <details close>
+  <summary> <h4>See Configuration Images</h4> </summary>
+  
+  ![HPC_CryptoCluster](https://i.imgur.com/v4cEmFA.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/ggrAsG8.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/FaFgG7i.png)
+  <br><br>
+  </details>
+<br>   
 
+## Installation
 
-- **install git, ansible, collections, and clone the repository**
+Follow these steps to install necessary tools, configure the cluster, and set up the controller and compute nodes.
+
+- **Install Git, Ansible, and Clone the Project Repository:**
 ```bash
 dnf install -y git ansible-core
 git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
 cd HPC_CryptoCluster
 ansible-galaxy collection install -r requirements.yaml -vv
 ```
-- **Run install playbooks**
+- **Run the Ansible playbooks to install and configure Warewulf and John the Ripper:**
 ```bash
 ansible-playbook warewulf.yaml -vv
 ansible-playbook john.yaml -vv
 ```
-- **Configure container image**
+- **In Warewulf container image shell, install dependencies, and configure Slurm for the compute nodes:**
 ```bash
 wwctl container shell rockylinux-9
 ```
@@ -89,15 +104,15 @@ ansible-galaxy collection install -r requirements.yaml -vv
 ansible-playbook slurm-node.yaml -vv
 exit #rebuild container image
 ```
-- **install and configure slurm/munge setup for controller**
+- **Set Up Slurm and Munge on the Controller Node to manage the Slurm job scheduler and secure communication:**
 ```bash
 ansible-playbook slurm-control.yaml -vv
 ```
-- **Start compute nodes**
+- **Power on compute nodes to initialize the network boot and connect to the controller node**
 <br><br>
 
----
 
+---
 - **Confirm warewulf service is up and node overlays configured**
 ```bash
 wwctl node list -l && wwctl node list -n
