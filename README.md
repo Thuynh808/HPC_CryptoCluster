@@ -43,15 +43,27 @@ This project simulates a high-performance computing (HPC) cluster designed for d
 | Munge          | 0.5.13   |
 | JohnTheRipper  | 1.9.0    |
 
+### Environment Setup
 
-
-
+- Create NAT Network:
+  - In VirtualBox, create a NAT Network
+  - Disable DHCP
+- Create VMs:
+  - 1 Controller Node
+  - 3 Compute Nodes
+- Setup Network Boot:
+  - Assign all nodes to NAT Network
+  - Download and attach the iPXE ISO to each compute node’s virtual DVD drive to enable network booting
+  - Set boot order on compute nodes
+    
 | Server         | Role              | CPU | RAM  |
 |----------------|-------------------|-----|------|
 | Control        | Controller        | 4   | 8 GB |
 | Node1          | Compute Node      | 2   | 4 GB |     
 | Node2          | Compute Node      | 2   | 4 GB |    
 | Node3          | Compute Node      | 2   | 4 GB |  
+
+
 
 - **install git, ansible, collections, and clone the repository**
 ```bash
