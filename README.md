@@ -111,7 +111,9 @@ ansible-playbook slurm-control.yaml -vv
 - **Power on compute nodes to initialize the network boot and connect to the controller node**
 <br><br>
 
-
+<br><br>
+<br><br>
+<br><br>
 ---
 - **Confirm warewulf service is up and node overlays configured**
 ```bash
