@@ -78,7 +78,7 @@ In this section, we’ll set up the virtual infrastructure for the HPC_CryptoClu
 
 ## Installation
 
-Follow these steps to install necessary tools, configure the cluster, and set up the controller and compute nodes.
+Power on Controller node and follow these steps to install necessary tools and configure the cluster
 
 - **Install Git, Ansible, and Clone the Project Repository:**
 ```bash
