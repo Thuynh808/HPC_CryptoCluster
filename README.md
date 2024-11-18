@@ -1,4 +1,3 @@
-# HPC_CryptoCluster
 ![HPC_CryptoCluster](https://i.imgur.com/31TiOpL.png)
 
 - **install git, ansible, collections, and clone the repository**
