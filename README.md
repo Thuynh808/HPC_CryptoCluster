@@ -1,4 +1,19 @@
 ![HPC_CryptoCluster](https://i.imgur.com/31TiOpL.png)
+![HPC_CryptoCluster](https://i.imgur.com/v4cEmFA.png)
+![HPC_CryptoCluster](https://i.imgur.com/ggrAsG8.png)
+![HPC_CryptoCluster](https://i.imgur.com/FaFgG7i.png)
+![HPC_CryptoCluster](https://i.imgur.com/Julx1xb.png)
+![HPC_CryptoCluster](https://i.imgur.com/82vV2aF.png)
+![HPC_CryptoCluster](https://i.imgur.com/UCc5IMD.png)
+![HPC_CryptoCluster](https://i.imgur.com/AvlmOHC.png)
+![HPC_CryptoCluster](https://i.imgur.com/zQkYUcj.png)
+![HPC_CryptoCluster](https://i.imgur.com/xY4asql.png)
+![HPC_CryptoCluster](https://i.imgur.com/RHsmczr.png)
+![HPC_CryptoCluster](https://i.imgur.com/MnZO0Tu.png)
+![HPC_CryptoCluster](https://i.imgur.com/lk5kop8.png)
+![HPC_CryptoCluster](https://i.imgur.com/kv4N547.png)
+![HPC_CryptoCluster](https://i.imgur.com/4Sp87TD.png)
+![HPC_CryptoCluster](https://i.imgur.com/qB3Oj56.png)
 
 - **install git, ansible, collections, and clone the repository**
 ```bash
