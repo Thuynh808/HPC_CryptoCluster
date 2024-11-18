@@ -1,19 +1,35 @@
 ![HPC_CryptoCluster](https://i.imgur.com/31TiOpL.png)
-![HPC_CryptoCluster](https://i.imgur.com/v4cEmFA.png)
-![HPC_CryptoCluster](https://i.imgur.com/ggrAsG8.png)
-![HPC_CryptoCluster](https://i.imgur.com/FaFgG7i.png)
-![HPC_CryptoCluster](https://i.imgur.com/Julx1xb.png)
-![HPC_CryptoCluster](https://i.imgur.com/82vV2aF.png)
-![HPC_CryptoCluster](https://i.imgur.com/UCc5IMD.png)
-![HPC_CryptoCluster](https://i.imgur.com/AvlmOHC.png)
-![HPC_CryptoCluster](https://i.imgur.com/zQkYUcj.png)
-![HPC_CryptoCluster](https://i.imgur.com/xY4asql.png)
-![HPC_CryptoCluster](https://i.imgur.com/RHsmczr.png)
-![HPC_CryptoCluster](https://i.imgur.com/MnZO0Tu.png)
-![HPC_CryptoCluster](https://i.imgur.com/lk5kop8.png)
-![HPC_CryptoCluster](https://i.imgur.com/kv4N547.png)
-![HPC_CryptoCluster](https://i.imgur.com/4Sp87TD.png)
-![HPC_CryptoCluster](https://i.imgur.com/qB3Oj56.png)
+
+<details close>
+<summary> <h4>images</h4> </summary>
+
+  ![HPC_CryptoCluster](https://i.imgur.com/v4cEmFA.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/ggrAsG8.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/FaFgG7i.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/Julx1xb.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/82vV2aF.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/UCc5IMD.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/AvlmOHC.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/zQkYUcj.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/xY4asql.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/RHsmczr.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/MnZO0Tu.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/lk5kop8.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/kv4N547.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/4Sp87TD.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/qB3Oj56.png)
+</details>
+
+## Project Overview
+This project simulates a high-performance computing (HPC) cluster designed for distributed password cracking. Using VirtualBox, Warewulf, and Slurm, I created a scalable environment to run John the Ripper across multiple nodes, demonstrating both HPC management skills and basic pentesting capabilities. The project showcases how compute resources can be efficiently scaled for demanding tasks in cybersecurity.
+
+
+| Server         | Role              | CPU | RAM  |
+|----------------|-------------------|-----|------|
+| Control        | Controller        | 4   | 8 GB |
+| Node1          | Compute Node      | 2   | 4 GB |     
+| Node2          | Compute Node      | 2   | 4 GB |    
+| Node3          | Compute Node      | 2   | 4 GB |  
 
 - **install git, ansible, collections, and clone the repository**
 ```bash
