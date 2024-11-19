@@ -226,7 +226,6 @@ cat /home/slurm/john_distributed_result.log
 - The distributed job completed in 6 minutes and 52 seconds, demonstrating a significant reduction in runtime compared to the single-node test (16 minutes and 22 seconds).
 - All 10 passwords were successfully recovered, showcasing the cluster's ability to handle distributed workloads efficiently.
 - The multi-node distributed test highlights the efficiency and scalability of the cluster. By utilizing three nodes, the runtime was reduced by nearly 58% compared to the single-node test.
-- All 10 passwords were successfully cracked, demonstrating the cluster's capability to handle resource-intensive tasks efficiently while maintaining accuracy.
     
 ![HPC_CryptoCluster](https://i.imgur.com/qB3Oj56.png) 
 
