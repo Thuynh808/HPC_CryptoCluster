@@ -175,6 +175,12 @@ scontrol show node
   </details>
 <br>   
 
+
+## Testing Cluster with John the Ripper
+
+<details close>
+<summary> <h4>Single Node Test</h4> </summary>
+
 - **first test: john single node crack. from controller node execute sbatch command**
 ```bash
 cd /home/slurm
@@ -188,7 +194,11 @@ scontrol show job <JobId>
 scontrol show job <JobId>
 cat /home/slurm/john_result.log
 ```
+</details>
 
+<details close>
+<summary> <h4>Multi-Node Distributed Test</h4> </summary>
+  
 - **second test: john distributed test.  execute distributed sbatch command**
 ```bash
 cd /home/slurm
@@ -199,6 +209,7 @@ sinfo -l
 scontrol show job <JobId>
 cat /home/slurm/john_distributed_result.log
 ```
+</details>
 ---
 
 
