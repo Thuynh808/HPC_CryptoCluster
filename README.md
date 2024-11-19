@@ -23,14 +23,14 @@ This project simulates a high-performance computing (HPC) cluster designed for d
 
 ### Components
 
-- **Operating System:** Rocky Linux provides a stable base for the cluster
-- **Virtualization:** VirtualBox hosts the virtual machines for each cluster node
+- **Rocky Linux:** provides a stable base for the cluster
+- **VirtualBox:** VirtualBox hosts the virtual machines for each cluster node
 - **Network Boot:** iPXE enables compute nodes to boot over the network
-- **Automation:** Ansible automates configuration and deployment tasks across the cluster, streamlining setup and updates
-- **Cluster Management:** Warewulf manages and deploys the operating system and software configurations across compute nodes
-- **Job Scheduling:** Slurm workload manager that allocates resources and schedules jobs across the cluster
-- **Password Cracking Tool:** John the Ripper used to test the cluster's distributed password cracking jobs
-- **Communication Security:** Munge provides secure authentication for message passing between nodes
+- **Ansible:** automates configuration and deployment tasks across the cluster, streamlining setup and updates
+- **Warewulf:** manages and deploys the operating system and software configurations across compute nodes
+- **Slurm:** workload manager that allocates resources and schedules jobs across the cluster
+- **John the Ripper:** used to test the cluster's distributed password cracking jobs
+- **Munge:** provides secure authentication for message passing between nodes
 
 ### Versions
 
