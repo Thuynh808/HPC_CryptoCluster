@@ -1,7 +1,9 @@
 ![HPC_CryptoCluster](https://i.imgur.com/31TiOpL.png)
 
 ## Project Overview
-This project simulates a high-performance computing (HPC) cluster for distributed password cracking. Using VirtualBox, Warewulf, and Slurm, the cluster scales password-cracking tasks with John the Ripper across multiple nodes, demonstrating HPC management and pentesting capabilities.
+This project simulates a high-performance computing (HPC) cluster for distributed password cracking. Using VirtualBox, **Warewulf**, and **Slurm**, the cluster scales password-cracking tasks with **John the Ripper** across multiple nodes, demonstrating HPC management and pentesting capabilities.
+
+The cluster utilizes stateless compute nodes, which are booted over the network using iPXE and provisioned with containerized environments managed by Warewulf. This approach ensures consistency, flexibility, and efficient resource utilization, as the nodes do not require persistent storage and can be quickly reconfigured or rebuilt from the central container image.
 
 ### Components
 
@@ -57,6 +59,7 @@ In this section, we’ll set up the virtual infrastructure for the HPC_CryptoClu
   ![HPC_CryptoCluster](https://i.imgur.com/FaFgG7i.png)
 
   </details>
+> Note: This project is configured and executed as `root` for simplicity and to streamline the setup process.
 <br>   
 
 ## Installation
