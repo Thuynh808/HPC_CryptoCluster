@@ -4,13 +4,10 @@
 <summary> <h4>images</h4> </summary>
   
 
-  ![HPC_CryptoCluster](https://i.imgur.com/Julx1xb.png)
-  ![HPC_CryptoCluster](https://i.imgur.com/82vV2aF.png)
-  ![HPC_CryptoCluster](https://i.imgur.com/UCc5IMD.png)
-  ![HPC_CryptoCluster](https://i.imgur.com/AvlmOHC.png)
-  ![HPC_CryptoCluster](https://i.imgur.com/zQkYUcj.png)
-  ![HPC_CryptoCluster](https://i.imgur.com/xY4asql.png)
-  ![HPC_CryptoCluster](https://i.imgur.com/RHsmczr.png)
+
+
+
+
   ![HPC_CryptoCluster](https://i.imgur.com/MnZO0Tu.png)
   ![HPC_CryptoCluster](https://i.imgur.com/lk5kop8.png)
   ![HPC_CryptoCluster](https://i.imgur.com/kv4N547.png)
@@ -87,12 +84,12 @@ git clone -b dev https://github.com/Thuynh808/HPC_CryptoCluster
 cd HPC_CryptoCluster
 ansible-galaxy collection install -r requirements.yaml -vv
 ```
-- **Run the Ansible playbooks to install and configure Warewulf and John the Ripper:**
+- **Run the Ansible playbooks to install and configure `Warewulf` and `John the Ripper`:**
 ```bash
 ansible-playbook warewulf.yaml -vv
 ansible-playbook john.yaml -vv
 ```
-- **In Warewulf container image shell, install dependencies, and configure Slurm for the compute nodes:**
+- **In `Warewulf` container image shell, install dependencies, and configure `Slurm` for the compute nodes:**
 ```bash
 wwctl container shell rockylinux-9
 ```
@@ -104,41 +101,62 @@ ansible-galaxy collection install -r requirements.yaml -vv
 ansible-playbook slurm-node.yaml -vv
 exit #rebuild container image
 ```
-- **Set Up Slurm and Munge on the Controller Node to manage the Slurm job scheduler and secure communication:**
+- **Set Up `Slurm` and `Munge` on the Controller Node to manage the Slurm job scheduler and secure communication:**
 ```bash
 ansible-playbook slurm-control.yaml -vv
 ```
-- **Power on compute nodes to initialize the network boot and connect to the controller node**
+- **`Power on` compute nodes to initialize the network boot and connect to the controller node**
+<br><br>
 <br><br>
 
-<br><br>
-<br><br>
-<br><br>
----
-- **Confirm warewulf service is up and node overlays configured**
+## Deployment Verification
+
+Let's verify everything is up and running!
+
+- **Confirm `Warewulf` service is up and node overlays configured**
 ```bash
 wwctl node list -l && wwctl node list -n
 wwctl node list -a | tail -9
 systemctl status warewulfd.service --no-pager
 firewall-cmd --list-all
 ```
-
-- **Confirm password file and Run a simple test with John**
+  <details close>
+  <summary> <h4>See Images</h4> </summary>
+  
+  ![HPC_CryptoCluster](https://i.imgur.com/Julx1xb.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/82vV2aF.png)
+  <br><br>
+  </details>
+  
+- **Confirm sample password file is created and Run a benchmark test with `John`**
 ```bash
 cd /home/slurm
 ls -l
 cat john_hash.txt
 john --test --format=raw-sha256
 ```
-
-- **Confirm slurm and munge are operational**
+  <details close>
+  <summary> <h4>See Images</h4> </summary>
+  
+  ![HPC_CryptoCluster](https://i.imgur.com/UCc5IMD.png)
+  <br><br>
+  </details>
+  
+- **Confirm `Slurm` and `Munge` are operational and Munge key is valid**
 ```bash
 systemctl status slurmctld munge --no-pager
 munge -n | ssh node1 unmunge
 ssh node1 systemctl status slurmd
 ```
-
-- **Confirm nodes are properly up**
+  <details close>
+  <summary> <h4>See Images</h4> </summary>
+  
+  ![HPC_CryptoCluster](https://i.imgur.com/AvlmOHC.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/zQkYUcj.png)
+  <br><br>
+  </details>
+  
+- **Confirm compute nodes are properly up with network boot and hosts configured**
 ```bash
 ssh node3
 ```
@@ -148,7 +166,14 @@ cat /etc/hosts
 sinfo -l
 scontrol show node
 ```
----
+  <details close>
+  <summary> <h4>See Images</h4> </summary>
+    
+  ![HPC_CryptoCluster](https://i.imgur.com/xY4asql.png)
+  ![HPC_CryptoCluster](https://i.imgur.com/RHsmczr.png)
+  <br><br>
+  </details>
+<br>   
 
 - **first test: john single node crack. from controller node execute sbatch command**
 ```bash
